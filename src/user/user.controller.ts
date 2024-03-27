@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Post } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { UserService } from './user.service';
@@ -8,8 +8,9 @@ export class UserController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     const userExists = await this.findByEmail(createUserDto.email);
-    if (userExists) return;
-
+    if (userExists) {
+      throw new ConflictException('User already exists');
+    }
     const data = {
       ...createUserDto,
       password: await bcrypt.hash(createUserDto.password, 10),
