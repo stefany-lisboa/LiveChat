@@ -3,9 +3,13 @@ import * as bcrypt from 'bcrypt';
 import { UserDto } from 'src/user/dtos/user.dto';
 import { UserService } from 'src/user/user.service';
 import { UserPayload } from './models/user-payload';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private jwtService: JwtService,
+    private readonly userService: UserService,
+  ) {}
   async validateUser(email: string, password: string) {
     const user = await this.userService.findOne({ email });
     if (user) {
@@ -26,6 +30,8 @@ export class AuthService {
       email: user.email,
       name: user.name,
     };
-    return payload;
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
   }
 }

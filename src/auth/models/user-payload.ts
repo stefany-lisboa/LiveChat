@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export class UserPayload {
+export interface UserPayload {
   sub: mongoose.Types.ObjectId;
   email: string;
   name: string;

@@ -20,4 +20,9 @@ export class UserRepository {
     )?.toObject();
     return foundedUsers;
   }
+
+  async find(): Promise<UserDto[]> {
+    const foundedUsers = await this.userModel.find().exec();
+    return foundedUsers;
+  }
 }
