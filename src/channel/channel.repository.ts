@@ -15,7 +15,7 @@ export class ChannelRepository {
     return (await channelCreated.save()).toObject();
   }
 
-  async getChannels(): Promise<ChannelDto[]> {
+  async find(): Promise<ChannelDto[]> {
     const foundedChannels = await this.channelModel.find().exec();
     return foundedChannels;
   }
