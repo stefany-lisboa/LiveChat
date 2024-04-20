@@ -7,6 +7,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { UserModule } from './user/user.module';
 import { ChatModule } from './chat/chat.module';
 import { ChannelModule } from './channel/channel.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ChannelModule } from './channel/channel.module';
     UserModule,
     ChatModule,
     ChannelModule,
+    MessageModule,
   ],
   controllers: [],
   providers: [
