@@ -10,7 +10,7 @@ export class ChannelService {
   }
 
   async getChannels() {
-    const foundedChannels = await this.channelRepository.getChannels();
+    const foundedChannels = await this.channelRepository.find();
     return foundedChannels;
   }
 }
