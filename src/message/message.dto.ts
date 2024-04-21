@@ -10,7 +10,7 @@ export class MessageDTO {
   @IsMongoId()
   destinataryId: mongoose.Types.ObjectId;
   @IsMongoId()
-  channeld: mongoose.Types.ObjectId;
+  channelId: mongoose.Types.ObjectId;
   @IsBoolean()
   sended: boolean;
   @IsBoolean()

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ChannelService } from './channel.service';
 import { ChannelDto } from './channel.dto';
 
@@ -15,5 +15,11 @@ export class ChannelController {
   async getChannels() {
     const createdChannel = await this.channelService.getChannels();
     return createdChannel;
+  }
+
+  @Get(':id/messages')
+  async getMessagesFromChannels(@Param() id: string) {
+    const getMessages = await this.channelService.getMessagesFromChannel(id);
+    return getMessages;
   }
 }
